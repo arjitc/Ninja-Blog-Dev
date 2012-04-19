@@ -9,7 +9,7 @@ date_default_timezone_set("America/Monterrey");
 $olderposts = "View Older Posts";
 $newerposts = "View Newer Posts";
 $pagegen = "Page generated on";
-$copyright = "Copyright 2012 Neto.MX";
+$copyright = "Copyright 2012 Neto.MX and SpeedBus";
 $nopost = "No Posts Exist";
 //Stop modifying!
 
