@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+<?php
+//if (isset($_POST['act']))
+$act = $_POST['act'];
+if($act == "post") {
+    $name = $_POST['name'];
+    $message  = $_POST ['message'];
+if ($message != "") {
+    @$fp = fopen("comments.txt", 'a');
+    if (!$fp) {
+        //The file could not be opened
+        echo "There was an error! Please try again later!";
+        exit;
+    } else {
+        //The file was successfully opened, lets write the comment to it.
+        $outputstring = "<br>Name: " .$name. "<br> Comment:<br>" .$message. "<br>";
+        fwrite($fp, $outputstring, strlen($outputstring));
+        fclose($fp);
+        
+        //Post the success message
+        echo "Your comment was successfully entered. <a href='index.php'>Click here to continue.</a>";
+    }
+}
+echo "The comment cannot be empty. <a href='index.php'>Click here to continue.</a>";
+} else {
+    //We are not trying to post a comment, show the form.
+?>
+<p>Previous comments :</p>
+<?php include("comments.txt"); ?>
+<br>
+<p>Post a comment :</p>
+<form action="index.php" method="post">
+Name : <input type="text" name="name" value="" size="50"></input>
+Comment : <textarea name="message"></textarea>
+<input type="hidden" name="act" value="post"></input>
+<input type="submit" name="submit" value="Submit" class="btn btn-primary"></input>
+</form>
+<?php
+}
+?>
+</body>
+</html>
